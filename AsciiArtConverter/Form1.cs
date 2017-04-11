@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace AsciiArtConverter
         }
 
         private void btnResetCanvas_Click(object sender, EventArgs e)
-        {
+        {        
             ResetCanvas();
         }
 
@@ -58,13 +59,26 @@ namespace AsciiArtConverter
             bitMap.LockBits(new Rectangle(0, 0, bitMap.Width, bitMap.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, bitMap.PixelFormat);
             var threadCount = ThreadCount;
 
-            // parallel algorithm
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
 
+            ParallelAsciiGenerator(ref bitMap, threadCount);
+
+            stopWatch.Stop();
+            SetElapsedTime(stopWatch);
 
             ToggleCanvasEditting();
         }
 
+        private void ParallelAsciiGenerator(ref Bitmap bitmap, int threadCount)
+        {
+            // todo: The hard shit.
+        }
 
+        private void SetElapsedTime(Stopwatch stopWatch)
+        {
+            lblElapsed.Text = $"Elapsed Time: {stopWatch.ElapsedMilliseconds} ms";
+        }
         
 
         private void ShowTextBox(string message)
