@@ -1,0 +1,9 @@
+C:\Users\Josh\Documents\College\MU467\ASCIIArtConverter\ASCIIArtConverter\AsciiArtConverter\bin\Debug\AsciiArtConverter.exe.config
+C:\Users\Josh\Documents\College\MU467\ASCIIArtConverter\ASCIIArtConverter\AsciiArtConverter\bin\Debug\AsciiArtConverter.exe
+C:\Users\Josh\Documents\College\MU467\ASCIIArtConverter\ASCIIArtConverter\AsciiArtConverter\bin\Debug\AsciiArtConverter.pdb
+C:\Users\Josh\Documents\College\MU467\ASCIIArtConverter\ASCIIArtConverter\AsciiArtConverter\obj\Debug\AsciiArtConverter.csprojResolveAssemblyReference.cache
+C:\Users\Josh\Documents\College\MU467\ASCIIArtConverter\ASCIIArtConverter\AsciiArtConverter\obj\Debug\AsciiArtConverter.Form1.resources
+C:\Users\Josh\Documents\College\MU467\ASCIIArtConverter\ASCIIArtConverter\AsciiArtConverter\obj\Debug\AsciiArtConverter.Properties.Resources.resources
+C:\Users\Josh\Documents\College\MU467\ASCIIArtConverter\ASCIIArtConverter\AsciiArtConverter\obj\Debug\AsciiArtConverter.csproj.GenerateResource.Cache
+C:\Users\Josh\Documents\College\MU467\ASCIIArtConverter\ASCIIArtConverter\AsciiArtConverter\obj\Debug\AsciiArtConverter.exe
+C:\Users\Josh\Documents\College\MU467\ASCIIArtConverter\ASCIIArtConverter\AsciiArtConverter\obj\Debug\AsciiArtConverter.pdb
