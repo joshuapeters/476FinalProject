@@ -42,7 +42,7 @@
             // 
             // rtbAsciiCanvas
             // 
-            this.rtbAsciiCanvas.Font = new System.Drawing.Font("Courier New", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbAsciiCanvas.Font = new System.Drawing.Font("Courier New", 2F);
             this.rtbAsciiCanvas.Location = new System.Drawing.Point(9, 43);
             this.rtbAsciiCanvas.Margin = new System.Windows.Forms.Padding(2);
             this.rtbAsciiCanvas.Name = "rtbAsciiCanvas";

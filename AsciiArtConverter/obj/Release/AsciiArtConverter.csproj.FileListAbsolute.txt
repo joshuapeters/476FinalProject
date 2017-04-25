@@ -1,0 +1,8 @@
+C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\bin\Release\AsciiArtConverter.exe.config
+C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\bin\Release\AsciiArtConverter.exe
+C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\bin\Release\AsciiArtConverter.pdb
+C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\obj\Release\AsciiArtConverter.Form1.resources
+C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\obj\Release\AsciiArtConverter.Properties.Resources.resources
+C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\obj\Release\AsciiArtConverter.csproj.GenerateResource.Cache
+C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\obj\Release\AsciiArtConverter.exe
+C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\obj\Release\AsciiArtConverter.pdb

@@ -122,38 +122,27 @@ namespace AsciiArtConverter
             switch (x)
             {
                 case 0:
-                    return ' ';
-                    break;
+                    return '@';
                 case 1:
-                    return '.';
-                    break;
-                case 2:
-                    return ':';
-                    break;
-                case 3:
-                    return '-';
-                    break;
-                case 4:
-                    return '=';
-                    break;
-                case 5:
-                    return '+';
-                    break;
-                case 6:
-                    return '*';
-                    break;
-                case 7:
-                    return '#';
-                    break;
-                case 8:
                     return '%';
-                    break;
+                case 2:
+                    return '#';
+                case 3:
+                    return '*';
+                case 4:
+                    return '+';
+                case 5:
+                    return '=';
+                case 6:
+                    return '-';
+                case 7:
+                    return ':';
+                case 8:
+                    return '.';
                 case 9:
-                    return '@';
-                    break;
+                    return ' ';
                 case 10:
-                    return '@';
-                    break;
+                    return ' ';
             }  
             return ' ';
         }
@@ -196,7 +185,14 @@ namespace AsciiArtConverter
             {
                 for (int y = 0; y < asciiMap.GetLength(1); ++y)
                 {
-                    output += asciiMap[x, y];
+                    try
+                    {
+                        output += asciiMap[x, y];
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        output += "_";
+                    }
                 }
                 output += "\n";
             }
