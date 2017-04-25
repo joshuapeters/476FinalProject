@@ -118,7 +118,7 @@ namespace AsciiArtConverter
         private char GrayToAscii(int RGB)
         {
             // .:-=+*#%@
-            int x = RGB / 255;
+            int x = RGB / 25;
             switch (x)
             {
                 case 0:
