@@ -42,21 +42,25 @@
             // 
             // rtbAsciiCanvas
             // 
-            this.rtbAsciiCanvas.Font = new System.Drawing.Font("Courier New", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbAsciiCanvas.Location = new System.Drawing.Point(13, 66);
+            this.rtbAsciiCanvas.Font = new System.Drawing.Font("Courier New", 4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbAsciiCanvas.Location = new System.Drawing.Point(9, 43);
+            this.rtbAsciiCanvas.Margin = new System.Windows.Forms.Padding(2);
             this.rtbAsciiCanvas.Name = "rtbAsciiCanvas";
             this.rtbAsciiCanvas.ReadOnly = true;
-            this.rtbAsciiCanvas.Size = new System.Drawing.Size(953, 866);
+            this.rtbAsciiCanvas.Size = new System.Drawing.Size(1200, 1000);
             this.rtbAsciiCanvas.TabIndex = 0;
             this.rtbAsciiCanvas.Text = "";
+            this.rtbAsciiCanvas.WordWrap = false;
+            this.rtbAsciiCanvas.TextChanged += new System.EventHandler(this.rtbAsciiCanvas_TextChanged);
             // 
             // txtFileText
             // 
             this.txtFileText.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFileText.Location = new System.Drawing.Point(12, 12);
+            this.txtFileText.Location = new System.Drawing.Point(8, 8);
+            this.txtFileText.Margin = new System.Windows.Forms.Padding(2);
             this.txtFileText.Name = "txtFileText";
             this.txtFileText.ReadOnly = true;
-            this.txtFileText.Size = new System.Drawing.Size(342, 21);
+            this.txtFileText.Size = new System.Drawing.Size(229, 17);
             this.txtFileText.TabIndex = 1;
             // 
             // openFileDialog1
@@ -66,9 +70,10 @@
             // btnFileSelector
             // 
             this.btnFileSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFileSelector.Location = new System.Drawing.Point(711, 10);
+            this.btnFileSelector.Location = new System.Drawing.Point(474, 6);
+            this.btnFileSelector.Margin = new System.Windows.Forms.Padding(2);
             this.btnFileSelector.Name = "btnFileSelector";
-            this.btnFileSelector.Size = new System.Drawing.Size(38, 23);
+            this.btnFileSelector.Size = new System.Drawing.Size(25, 15);
             this.btnFileSelector.TabIndex = 2;
             this.btnFileSelector.Text = "...";
             this.btnFileSelector.UseVisualStyleBackColor = true;
@@ -77,9 +82,10 @@
             // btnResetCanvas
             // 
             this.btnResetCanvas.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetCanvas.Location = new System.Drawing.Point(857, 10);
+            this.btnResetCanvas.Location = new System.Drawing.Point(571, 6);
+            this.btnResetCanvas.Margin = new System.Windows.Forms.Padding(2);
             this.btnResetCanvas.Name = "btnResetCanvas";
-            this.btnResetCanvas.Size = new System.Drawing.Size(109, 23);
+            this.btnResetCanvas.Size = new System.Drawing.Size(73, 15);
             this.btnResetCanvas.TabIndex = 3;
             this.btnResetCanvas.Text = "Reset Canvas";
             this.btnResetCanvas.UseVisualStyleBackColor = true;
@@ -88,9 +94,10 @@
             // btnConvert
             // 
             this.btnConvert.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConvert.Location = new System.Drawing.Point(755, 10);
+            this.btnConvert.Location = new System.Drawing.Point(503, 6);
+            this.btnConvert.Margin = new System.Windows.Forms.Padding(2);
             this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(96, 23);
+            this.btnConvert.Size = new System.Drawing.Size(64, 15);
             this.btnConvert.TabIndex = 4;
             this.btnConvert.Text = "Convert";
             this.btnConvert.UseVisualStyleBackColor = true;
@@ -99,9 +106,10 @@
             // btnExport
             // 
             this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.Location = new System.Drawing.Point(711, 38);
+            this.btnExport.Location = new System.Drawing.Point(474, 25);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(2);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(255, 23);
+            this.btnExport.Size = new System.Drawing.Size(170, 15);
             this.btnExport.TabIndex = 5;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
@@ -110,10 +118,11 @@
             // txtThreadCount
             // 
             this.txtThreadCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtThreadCount.Location = new System.Drawing.Point(105, 39);
+            this.txtThreadCount.Location = new System.Drawing.Point(70, 25);
+            this.txtThreadCount.Margin = new System.Windows.Forms.Padding(2);
             this.txtThreadCount.MaxLength = 2;
             this.txtThreadCount.Name = "txtThreadCount";
-            this.txtThreadCount.Size = new System.Drawing.Size(70, 21);
+            this.txtThreadCount.Size = new System.Drawing.Size(48, 17);
             this.txtThreadCount.TabIndex = 6;
             this.txtThreadCount.Text = "0";
             this.txtThreadCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -123,9 +132,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 42);
+            this.label1.Location = new System.Drawing.Point(8, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 15);
+            this.label1.Size = new System.Drawing.Size(55, 9);
             this.label1.TabIndex = 7;
             this.label1.Text = "Thread Count: ";
             // 
@@ -133,17 +143,18 @@
             // 
             this.lblElapsed.AutoSize = true;
             this.lblElapsed.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblElapsed.Location = new System.Drawing.Point(181, 39);
+            this.lblElapsed.Location = new System.Drawing.Point(121, 25);
+            this.lblElapsed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblElapsed.Name = "lblElapsed";
-            this.lblElapsed.Size = new System.Drawing.Size(108, 15);
+            this.lblElapsed.Size = new System.Drawing.Size(69, 9);
             this.lblElapsed.TabIndex = 8;
             this.lblElapsed.Text = "Elapsed Time: N/A";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(978, 944);
+            this.ClientSize = new System.Drawing.Size(1348, 687);
             this.Controls.Add(this.lblElapsed);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtThreadCount);
@@ -153,8 +164,9 @@
             this.Controls.Add(this.btnFileSelector);
             this.Controls.Add(this.txtFileText);
             this.Controls.Add(this.rtbAsciiCanvas);
-            this.MaximumSize = new System.Drawing.Size(1000, 1000);
-            this.MinimumSize = new System.Drawing.Size(1000, 1000);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(1500, 1300);
+            this.MinimumSize = new System.Drawing.Size(1364, 726);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
