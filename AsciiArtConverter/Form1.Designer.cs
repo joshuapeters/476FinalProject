@@ -43,11 +43,11 @@
             // rtbAsciiCanvas
             // 
             this.rtbAsciiCanvas.Font = new System.Drawing.Font("Courier New", 2F);
-            this.rtbAsciiCanvas.Location = new System.Drawing.Point(9, 43);
+            this.rtbAsciiCanvas.Location = new System.Drawing.Point(9, 46);
             this.rtbAsciiCanvas.Margin = new System.Windows.Forms.Padding(2);
             this.rtbAsciiCanvas.Name = "rtbAsciiCanvas";
             this.rtbAsciiCanvas.ReadOnly = true;
-            this.rtbAsciiCanvas.Size = new System.Drawing.Size(1200, 1000);
+            this.rtbAsciiCanvas.Size = new System.Drawing.Size(964, 630);
             this.rtbAsciiCanvas.TabIndex = 0;
             this.rtbAsciiCanvas.Text = "";
             this.rtbAsciiCanvas.WordWrap = false;
@@ -154,7 +154,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1348, 687);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(984, 687);
             this.Controls.Add(this.lblElapsed);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtThreadCount);
@@ -165,8 +166,8 @@
             this.Controls.Add(this.txtFileText);
             this.Controls.Add(this.rtbAsciiCanvas);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(1500, 1300);
-            this.MinimumSize = new System.Drawing.Size(1364, 726);
+            this.MaximumSize = new System.Drawing.Size(1000, 1000);
+            this.MinimumSize = new System.Drawing.Size(1000, 726);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);

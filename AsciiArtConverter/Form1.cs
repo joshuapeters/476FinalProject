@@ -77,10 +77,10 @@ namespace AsciiArtConverter
             int rgb;
             int[,] pixelMatrix = new int[Bmp.Width, Bmp.Height];
             Color c;
-            Bmp = CreateNonIndexedImage(Bmp);
-            for (int y = 0; y < Bmp.Height; ++y)
+            //Bmp = CreateNonIndexedImage(Bmp);
+            for (int x = 0; x < Bmp.Width; ++x)
             {
-                for (int x = 0; x < Bmp.Width; ++x)
+                for (int y = 0; y < Bmp.Height; ++y)
                 {
                     c = Bmp.GetPixel(x, y);
                     pixelMatrix[x, y] = (int)((c.R + c.G + c.B) / 3);
@@ -170,7 +170,7 @@ namespace AsciiArtConverter
             {
                 for (int y = 0; y < bitmap.Height; ++y)
                 {
-                    asciiMap[x, y] = GrayToAscii(bitmap.GetPixel(x, y).R);
+                    asciiMap[x, y] = GrayToAscii(bitmap.GetPixel(y, x).R);
                 }
             }
 
@@ -181,9 +181,9 @@ namespace AsciiArtConverter
         private void drawAsciiMap (ref char[,] asciiMap)
         {
             string output = "";
-            for (int x = 0; x < asciiMap.GetLength(0); ++x)
+            for (int y = 0; y < asciiMap.GetLength(1); ++y)
             {
-                for (int y = 0; y < asciiMap.GetLength(1); ++y)
+                for (int x = 0; x < asciiMap.GetLength(0); ++x)
                 {
                     try
                     {
