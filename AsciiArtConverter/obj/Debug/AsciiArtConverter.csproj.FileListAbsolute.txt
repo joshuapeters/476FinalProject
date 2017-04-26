@@ -16,3 +16,12 @@ C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\obj\Debug\Asci
 C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\obj\Debug\AsciiArtConverter.Form1.resources
 C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\obj\Debug\AsciiArtConverter.Properties.Resources.resources
 C:\Users\seanp\Documents\Source\476FinalProject\AsciiArtConverter\obj\Debug\AsciiArtConverter.csproj.GenerateResource.Cache
+C:\Users\jpeters\Documents\College\476FinalProject\AsciiArtConverter\bin\Debug\AsciiArtConverter.exe.config
+C:\Users\jpeters\Documents\College\476FinalProject\AsciiArtConverter\obj\Debug\AsciiArtConverter.exe
+C:\Users\jpeters\Documents\College\476FinalProject\AsciiArtConverter\obj\Debug\AsciiArtConverter.pdb
+C:\Users\jpeters\Documents\College\476FinalProject\AsciiArtConverter\bin\Debug\AsciiArtConverter.exe
+C:\Users\jpeters\Documents\College\476FinalProject\AsciiArtConverter\bin\Debug\AsciiArtConverter.pdb
+C:\Users\jpeters\Documents\College\476FinalProject\AsciiArtConverter\obj\Debug\AsciiArtConverter.csprojResolveAssemblyReference.cache
+C:\Users\jpeters\Documents\College\476FinalProject\AsciiArtConverter\obj\Debug\AsciiArtConverter.Form1.resources
+C:\Users\jpeters\Documents\College\476FinalProject\AsciiArtConverter\obj\Debug\AsciiArtConverter.Properties.Resources.resources
+C:\Users\jpeters\Documents\College\476FinalProject\AsciiArtConverter\obj\Debug\AsciiArtConverter.csproj.GenerateResource.Cache
