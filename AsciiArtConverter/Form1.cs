@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace AsciiArtConverter
 {
@@ -20,7 +21,7 @@ namespace AsciiArtConverter
             {
                 var threadCount = -1;
                 var parseSuccess = int.TryParse(txtThreadCount.Text, out threadCount);
-                return parseSuccess && threadCount >= 0 ? threadCount : 0;
+                return parseSuccess && threadCount > 0 ? threadCount : 1;
             }
         }
 
@@ -36,12 +37,22 @@ namespace AsciiArtConverter
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
+            ToggleWaitCursor();
             ConvertBitmapToAscii();
+            ToggleWaitCursor();
         }
 
         private void btnResetCanvas_Click(object sender, EventArgs e)
         {        
             ResetCanvas();
+        }
+
+        private void ToggleWaitCursor()
+        {
+            if (Cursor.Current == Cursors.Default)
+                Cursor.Current = Cursors.WaitCursor;
+            else
+                Cursor.Current = Cursors.Default;
         }
 
         private void ConvertBitmapToAscii()
@@ -55,24 +66,46 @@ namespace AsciiArtConverter
 
             ToggleCanvasEditting();
 
-            var bitMap = new Bitmap(filePath).GrayScale();
-            bitMap.LockBits(new Rectangle(0, 0, bitMap.Width, bitMap.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, bitMap.PixelFormat);
+            var bitMap = new Bitmap(filePath);
+
             var threadCount = ThreadCount;
 
             var stopWatch = new Stopwatch();
             stopWatch.Start();
-
-            ParallelAsciiGenerator(ref bitMap, threadCount);
-
+            var asciiMap = bitMap.ToGrayScaleRGBMatrixAsync(ThreadCount);
             stopWatch.Stop();
             SetElapsedTime(stopWatch);
+
+            drawAsciiMap(asciiMap);
 
             ToggleCanvasEditting();
         }
 
-        private void ParallelAsciiGenerator(ref Bitmap bitmap, int threadCount)
+
+        private void drawAsciiMap (char[,] asciiMap)
         {
-            // todo: The hard shit.
+            var lines = new string[asciiMap.GetLength(1)]; 
+
+
+            for (int y = 0; y < asciiMap.GetLength(1); ++y)
+            {
+                string output = "";
+                for (int x = 0; x < asciiMap.GetLength(0); ++x)
+                {
+                    try
+                    {
+                        output += asciiMap[x, y];
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        output += "_";
+                    }
+                }
+                output += "\n";
+                lines[y] = output;
+            }
+
+            rtbAsciiCanvas.Lines = lines;
         }
 
         private void SetElapsedTime(Stopwatch stopWatch)
@@ -114,12 +147,18 @@ namespace AsciiArtConverter
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory;
-            var fileName = $"AsciiExport_{new Random(DateTime.Now.Ticks.GetHashCode())}";
-            using (var writer = new StreamWriter(fileName, true))
+            var currentPath = AppDomain.CurrentDomain.BaseDirectory;
+            var fileName = $"AsciiExport_{new Random(DateTime.Now.Ticks.GetHashCode()).Next()}.rtf";
+            var filePath = currentPath + fileName;
+            using (var writer = new StreamWriter(filePath, true))
             {
                 writer.Write(rtbAsciiCanvas.Text);
             }
+        }
+
+        private void rtbAsciiCanvas_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
