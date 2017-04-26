@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace AsciiArtConverter
 {
@@ -64,7 +65,7 @@ namespace AsciiArtConverter
             stopWatch.Start();
             int[,] grayMap = toIntMatrix(bitMap);
             serialAsciiGenerator(ref grayMap);
-            //ParallelAsciiGenerator(ref bitMap, threadCount);
+            //ParallelAsciiGenerator(grayMap, threadCount);
 
             stopWatch.Stop();
             SetElapsedTime(stopWatch);
@@ -199,11 +200,45 @@ namespace AsciiArtConverter
             rtbAsciiCanvas.Text = output;
         }
 
-        private void ParallelAsciiGenerator(ref Bitmap bitmap, int threadCount)
+        private void ParallelAsciiGenerator(int[,] intMatrix, int threadCount)
         {
             // todo: The hard shit.
-            char[,] asciiMap = new char[bitmap.Width, bitmap.Height];
+            char[,] asciiMap = new char[intMatrix.GetLength(0), intMatrix.GetLength(1)];
+            Task[] tasks = new Task[threadCount];
+            int start, end;
+            int N = intMatrix.GetLength(0) * intMatrix.GetLength(1);
+            for (int p_id = 0; p_id < threadCount; ++p_id)
+            {
+                start = (p_id * N) / threadCount;
+                end = ((p_id + 1) * N) / threadCount;
+                tasks[p_id] = new Task(() => populateAsciiMap(ref asciiMap, ref intMatrix, p_id, start, end));   
+            }
 
+            drawAsciiMap(ref asciiMap);
+            
+
+        }
+
+        private void populateAsciiMap(ref char[,] asciiMap, ref int[,] intMatrix, int p_id, int start, int end)
+        {
+            int x = start / asciiMap.GetLength(0);
+            int y = start % asciiMap.GetLength(0);
+            int end_x = end / asciiMap.GetLength(0);
+            int end_y = end % asciiMap.GetLength(0);
+
+            for (; x < end_x; ++x)
+            {
+                for (; y < end_y; ++y)
+                {
+                    asciiMap[x, y] = GrayToAscii(intMatrix[x, y]);
+                }
+            }
+            /*
+             *  0  1  2  3  4  5  
+             *  6  7  8  9 10 11 
+             * 12 13 14 15 16 17
+               18 19 20 21 22 23
+             */
         }
 
         private void SetElapsedTime(Stopwatch stopWatch)
