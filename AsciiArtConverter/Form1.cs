@@ -112,7 +112,18 @@ namespace AsciiArtConverter
         {
             lblElapsed.Text = $"Elapsed Time: {stopWatch.ElapsedMilliseconds} ms";
         }
-        
+
+        private void generateSwitchCode()
+        {
+            string s = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\" ^`'. ";
+            string code = "switch(RBG){\n";
+            for (int i = 0; i < s.Length; ++i)
+            {
+                code += "case " + i + ":\n\treturn \'" + s[i] + "\';\n";
+            }
+            rtbAsciiCanvas.Text = code + "}";
+        }
+
 
         private void ShowTextBox(string message)
         {
