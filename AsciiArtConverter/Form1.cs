@@ -82,27 +82,14 @@ namespace AsciiArtConverter
         }
 
 
-        private void printIntArray (int[,] a)
-        {
-            string s = "";
-            for (int i = 0; i < a.GetLength(0); ++i)
-            {
-                for (int j = 0; j < a.GetLength(1); ++j)
-                {
-                    s += a[i, j] + " ";
-                }
-                s += "\n";
-            }
-            rtbAsciiCanvas.Text = s;
-        }
-
-
-
         private void drawAsciiMap (char[,] asciiMap)
         {
-            string output = "";
+            var lines = new string[asciiMap.GetLength(1)]; 
+
+
             for (int y = 0; y < asciiMap.GetLength(1); ++y)
             {
+                string output = "";
                 for (int x = 0; x < asciiMap.GetLength(0); ++x)
                 {
                     try
@@ -115,8 +102,10 @@ namespace AsciiArtConverter
                     }
                 }
                 output += "\n";
-                rtbAsciiCanvas.Text = output;
+                lines[y] = output;
             }
+
+            rtbAsciiCanvas.Lines = lines;
         }
 
         private void SetElapsedTime(Stopwatch stopWatch)
@@ -159,7 +148,7 @@ namespace AsciiArtConverter
         private void btnExport_Click(object sender, EventArgs e)
         {
             var currentPath = AppDomain.CurrentDomain.BaseDirectory;
-            var fileName = $"AsciiExport_{new Random(DateTime.Now.Ticks.GetHashCode())}";
+            var fileName = $"AsciiExport_{new Random(DateTime.Now.Ticks.GetHashCode()).Next()}.rtf";
             var filePath = currentPath + fileName;
             using (var writer = new StreamWriter(filePath, true))
             {
