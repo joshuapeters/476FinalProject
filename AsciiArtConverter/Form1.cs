@@ -65,8 +65,7 @@ namespace AsciiArtConverter
             }
 
             ToggleCanvasEditting();
-
-            var bitMap = new Bitmap(filePath);
+            var bitMap = (Bitmap) Image.FromFile(filePath);
 
             var threadCount = ThreadCount;
 
@@ -146,7 +145,7 @@ namespace AsciiArtConverter
         private void LoadFile()
         {
             var fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Image Files | *.bmp;";
+            fileDialog.Filter = "Image Files | *";
             var dr = fileDialog.ShowDialog();
             if (dr == DialogResult.OK)
             {
