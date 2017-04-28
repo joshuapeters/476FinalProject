@@ -51,7 +51,7 @@ namespace AsciiArtConverter
                         for (int y = startIndex; y < endIndex; ++y)
                         {
                             var pixel = localMap.GetPixel(x, y);
-                            pixelMatrix[x, y] = GrayToAscii((pixel.R + pixel.G + pixel.B) / 3);
+                            pixelMatrix[x, y] = GrayToAscii70((pixel.R + pixel.G + pixel.B) / 3);
                         }
                     }
                     localMap.Dispose();

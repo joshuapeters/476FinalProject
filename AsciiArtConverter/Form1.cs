@@ -28,6 +28,18 @@ namespace AsciiArtConverter
         public Form1()
         {
             InitializeComponent();
+            ToggleBetaComponents(false);
+            BindFonts();
+            numFontSize.Text = rtbAsciiCanvas.Font.SizeInPoints.ToString();
+            ddlFonts.SelectedItem = rtbAsciiCanvas.Font.FontFamily.Name;
+        }
+
+        private void ToggleBetaComponents(bool display)
+        {
+            numFontSize.Visible = display;
+            ddlFonts.Visible = display;
+            lblFontSize.Visible = display;
+            lblFont.Visible = display;
         }
 
         private void fileSelector_Click(object sender, EventArgs e)
@@ -112,17 +124,6 @@ namespace AsciiArtConverter
             lblElapsed.Text = $"Elapsed Time: {stopWatch.ElapsedMilliseconds} ms";
         }
 
-        private void generateSwitchCode()
-        {
-            string s = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\" ^`'. ";
-            string code = "switch(RBG){\n";
-            for (int i = 0; i < s.Length; ++i)
-            {
-                code += "case " + i + ":\n\treturn \'" + s[i] + "\';\n";
-            }
-            rtbAsciiCanvas.Text = code + "}";
-        }
-
 
         private void ShowTextBox(string message)
         {
@@ -135,17 +136,22 @@ namespace AsciiArtConverter
         {
             ToggleCanvasEditting();
             rtbAsciiCanvas.Text = string.Empty;
+            rtbAsciiCanvas.Font = new Font("Courier New", 2);
+            numFontSize.Text = rtbAsciiCanvas.Font.SizeInPoints.ToString();
+            ddlFonts.SelectedItem = rtbAsciiCanvas.Font.FontFamily.Name;
             ToggleCanvasEditting();
 
             ToggleTextBox();
             txtFileText.Text = string.Empty;
             ToggleTextBox();
+
+            txtThreadCount.Text = "0";
         }
 
         private void LoadFile()
         {
             var fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Image Files | *";
+            fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
             var dr = fileDialog.ShowDialog();
             if (dr == DialogResult.OK)
             {
@@ -155,6 +161,23 @@ namespace AsciiArtConverter
             }
         }
 
+        // messes up current image when font size changes
+        private void UpdateFont()
+        {
+            var currentFont = rtbAsciiCanvas.Font;
+            var font = new Font(ddlFonts.SelectedText, decimal.ToInt64(numFontSize.Value));
+
+            rtbAsciiCanvas.SelectAll();
+            rtbAsciiCanvas.SelectionFont = font;
+            
+        }
+
+        private void BindFonts()
+        {
+            System.Drawing.Text.InstalledFontCollection col = new System.Drawing.Text.InstalledFontCollection();
+            ddlFonts.Items.AddRange(col.Families.Select(f => f.Name).ToArray());
+        }
+
         private void btnExport_Click(object sender, EventArgs e)
         {
             var currentPath = AppDomain.CurrentDomain.BaseDirectory;
@@ -162,13 +185,29 @@ namespace AsciiArtConverter
             var filePath = currentPath + fileName;
             using (var writer = new StreamWriter(filePath, true))
             {
-                writer.Write(rtbAsciiCanvas.Text);
+                writer.Write(rtbAsciiCanvas.Rtf);
             }
         }
 
         private void rtbAsciiCanvas_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void numFontSize_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateFont();
+        }
+
+        private void ddlFonts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateFont();
+        }
+
+        private void chkBeta_CheckedChanged(object sender, EventArgs e)
+        {
+            ToggleBetaComponents(chkBeta.Checked);
         }
     }
 }
