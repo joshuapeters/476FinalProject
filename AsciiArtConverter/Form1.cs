@@ -77,13 +77,14 @@ namespace AsciiArtConverter
             }
 
             ToggleCanvasEditting();
-            var bitMap = (Bitmap) Image.FromFile(filePath);
 
-            var threadCount = ThreadCount;
+            // get bitmap and convert it so something that we can operate on in parallel
+            var bitMap = (Bitmap) Image.FromFile(filePath);
+            var customBitMap = bitMap.ConvertToCustomBitmap();
 
             var stopWatch = new Stopwatch();
             stopWatch.Start();
-            var asciiMap = bitMap.ToGrayScaleRGBMatrixAsync(ThreadCount);
+            var asciiMap = customBitMap.ToGrayScaleRGBMatrixAsync(ThreadCount);
             stopWatch.Stop();
             SetElapsedTime(stopWatch);
 
@@ -151,7 +152,7 @@ namespace AsciiArtConverter
         private void LoadFile()
         {
             var fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            fileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png, *.bmp) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.bmp";
             var dr = fileDialog.ShowDialog();
             if (dr == DialogResult.OK)
             {
