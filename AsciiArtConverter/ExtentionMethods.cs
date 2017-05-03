@@ -5,56 +5,80 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AsciiArtConverter
 {
     internal static class ExtentionMethods
     {
-        private static object lockObject = new object();
-        public static char[,] ToGrayScaleRGBMatrix(this Bitmap bitmap)
+        
+
+        public static CustomBitmap ConvertToCustomBitmap(this Bitmap bitmap)
         {
-            char[,] pixelMatrix = new char[bitmap.Width, bitmap.Height];
+            var customBitmap = new CustomBitmap(bitmap.Width, bitmap.Height);
             for (int x = 0; x < bitmap.Width; ++x)
             {
                 for (int y = 0; y < bitmap.Height; ++y)
                 {
-                    var pixel = bitmap.GetPixel(x, y);
+                    customBitmap.PixelMatrix[x, y] = bitmap.GetPixel(x, y);
+                }
+            }
+            return customBitmap;
+        }
+
+
+    }
+
+    public class CustomBitmap
+    {
+        public Color[,] PixelMatrix { get; set; }
+
+        public CustomBitmap(int length, int width)
+        {
+            PixelMatrix = new Color[length, width];
+        }
+
+        public Color GetPixel(int x, int y)
+        {
+            return PixelMatrix[x, y];
+        }
+
+        public char[,] ToGrayScaleRGBMatrix()
+        {
+            char[,] pixelMatrix = new char[PixelMatrix.GetLength(0), PixelMatrix.GetLength(1)];
+            for (int x = 0; x < PixelMatrix.GetLength(0); ++x)
+            {
+                for (int y = 0; y < PixelMatrix.GetLength(1); ++y)
+                {
+                    var pixel = GetPixel(x, y);
                     pixelMatrix[x, y] = GrayToAscii70((pixel.R + pixel.G + pixel.B) / 3);
                 }
             }
             return pixelMatrix;
         }
 
-       
-
-        public static char[,] ToGrayScaleRGBMatrixAsync(this Bitmap bitmap, int threadCount)
+        public char[,] ToGrayScaleRGBMatrixAsync(int threadCount)
         {
-            char[,] pixelMatrix = new char[bitmap.Width, bitmap.Height];
-            int indexMod = bitmap.Height / threadCount;
+            char[,] pixelMatrix = new char[PixelMatrix.GetLength(0), PixelMatrix.GetLength(1)];
+            int indexMod = PixelMatrix.GetLength(1) / threadCount;
             var tasks = new List<Task>(threadCount);
-            
-            for (int i = 0; i != threadCount;++i)
+
+            for (int i = 0; i != threadCount; ++i)
             {
-                int startIndex  = i == 0 ? 0 : i * indexMod;
-                int endIndex    = i == threadCount - 1 ? bitmap.Height : startIndex + indexMod;
-                int width = bitmap.Width;
-                
-                tasks.Add(Task.Factory.StartNew(() => 
+                int startIndex = i == 0 ? 0 : i * indexMod;
+                int endIndex = i == threadCount - 1 ? PixelMatrix.GetLength(1) : startIndex + indexMod;
+                int width = PixelMatrix.GetLength(0);
+
+                tasks.Add(Task.Factory.StartNew(() =>
                 {
-                    Bitmap localMap;
-                    lock(lockObject)
-                    {
-                        localMap = (Bitmap)bitmap.Clone();
-                    }
                     for (int x = 0; x < width; ++x)
                     {
                         for (int y = startIndex; y < endIndex; ++y)
                         {
-                            var pixel = localMap.GetPixel(x, y);
-                            pixelMatrix[x, y] = GrayToAscii((pixel.R + pixel.G + pixel.B) / 3);
+                            var pixel = GetPixel(x, y);
+                            pixelMatrix[x, y] = GrayToAscii70((pixel.R + pixel.G + pixel.B) / 3);
                         }
                     }
-                    localMap.Dispose();
                 }));
             }
             Task.WaitAll(tasks.ToArray());
@@ -62,12 +86,12 @@ namespace AsciiArtConverter
             return pixelMatrix;
         }
 
-        public static bool IsBlack(this Color pixel)
+        public bool IsBlack(Color pixel)
         {
             return pixel.GetBrightness() < 0.02;
         }
 
-        private static char GrayToAscii70(int RGB)
+        private char GrayToAscii70(int RGB)
         {
             //$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. 
             int x = RGB / 3;
@@ -219,7 +243,7 @@ namespace AsciiArtConverter
             return ' ';
         }
 
-        private static char GrayToAscii(int RGB)
+        private char GrayToAscii(int RGB)
         {
             // .:-=+*#%@
             int x = RGB / 25;
@@ -250,7 +274,5 @@ namespace AsciiArtConverter
             }
             return ' ';
         }
-
-
     }
 }
