@@ -95,6 +95,7 @@ namespace AsciiArtConverter
         {
             //$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. 
             int x = RGB / 3;
+            //int x = (int) Math.Round(RGB / 3.64, 0, MidpointRounding.AwayFromZero);
             switch (x)
             {
                 case 0:

@@ -74,6 +74,7 @@ namespace AsciiArtConverter
             {
                 ShowTextBox("No file has been specified!");
                 return;
+
             }
 
             ToggleCanvasEditting();
